@@ -9,24 +9,30 @@ function NumberClick(event) {
     display.textContent = currentValue;
 }
 
+const numberButtons = document.querySelectorAll("[data-number]");
+for (let i = 0; i < numberButtons.length; i++) {
+    numberButtons[i].addEventListener("click", NumberClick);
+};
 
-document.querySelectorAll("[data-number]").forEach(button => {
 
-    button.addEventListener("click", NumberClick);
-    
-});
+function OperationClick(event) {
+    const operator = event.target.textContent;
 
-function opérationClick(event) {
-    const button = event.target;
-    currentValue += button.textContent;
+
+    if (!currentValue || /[+\-*/]/.test(currentValue)) {
+        return;
+    }
+
+    currentValue += operator;
     display.textContent = currentValue;
 }
 
 
-document.querySelectorAll("[data-operator]").forEach(button => {
+const operatorButtons = document.querySelectorAll("[data-operator]");
+for (let i = 0; i < operatorButtons.length; i++) {
+    operatorButtons[i].addEventListener("click", OperationClick);
+};
 
-    button.addEventListener("click", NumberClick);
-    
-});
+display.textContent = "0";
 
 
